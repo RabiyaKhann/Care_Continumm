@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+
+{% block title %}Contact - Care Continuum{% endblock %}
+
+{% block content %}
+<div class="container my-4">
+    <div class="row justify-content-center">
+        <div class="col-lg-8">
+            <div class="card shadow-lg p-4 border border-dark rounded">
+                <h2 class="text-center text-success mb-4">Contact Us</h2>
+                <p class="text-muted text-center">Have questions or need assistance? We're here to help!</p>
+                {% if messages %}
+                    <ul class="list-unstyled">
+                        {% for message in messages %}
+                            <li class="alert alert-{{ message.tags }} mb-2">{{ message }}</li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+                
+                <form method="post" novalidate class="mt-4">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <label for="name">Name:</label>
+                        <input type="text" id="name" name="name" class="form-control" required>
+                    </div>
+                    <br>
+                    <div class="form-group">
+                        <label for="email">Email:</label>
+                        <input type="email" id="email" name="email" class="form-control" required>
+                    </div>
+                    <br>
+                    <div class="form-group">
+                        <label for="query">Query:</label>
+                        <textarea id="query" name="query" class="form-control" rows="3" required></textarea>
+                    </div>
+                    <br>
+                    <button type="submit" class="btn btn-dark btn-danger btn-lg w-100">Send</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<style>
+    .btn-dark:hover {
+        background-color: #083d72;
+    }
+    .btn{
+            padding: 10px 20px;
+            font-size: 16px;
+            width: 140px;
+            border-radius: 5px;
+            margin: 5px;
+        }
+</style>    
+{% endblock %}
